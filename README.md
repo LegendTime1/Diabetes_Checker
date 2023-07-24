@@ -7,6 +7,15 @@ PI: Jeffrey Robinson, MS, PhD
 
 [![DOI](https://zenodo.org/badge/203414088.svg)](https://zenodo.org/badge/latestdoi/203414088)
 
+
+## App.py
+app.py has the flask code for Web application. 
+The web application takes user's age and 2-Hour serum insulin (mu U/ml) levels and predicts whether person has diabetes or not. 
+
+## checker.py
+Contains the funtions predict_diabetes used in app.py
+
+
 ## A. Intro
 The repository includes scripts with analysis of biomedical datasets from Robinson's research.  The repository is a codebase for undergraduate courses in bio-statistics, R- and Python- coding, and machine learning in UMBC's TLST program.  Courses have include BTEC350, (Biostatistics), BTEC330 (Software Applications in Biotechnology), BTEC 423 (Machine Learning with Bioinformatics Applications) and BTEC495 (Independent Student Research) courses taught by Robinson (Fall 2019 - Spring 2022). 
 
