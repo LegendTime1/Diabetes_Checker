@@ -15,6 +15,8 @@ The web application takes user's age and 2-Hour serum insulin (mu U/ml) levels a
 ## checker.py
 Contains the funtions predict_diabetes used in app.py
 
+## DiabetesChecker.py
+Contains the code on which checker.py is based. Can predict diabetes based on other as well like skin thickness, pregnancies, diastolic bp etc.
 
 ## A. Intro
 The repository includes scripts with analysis of biomedical datasets from Robinson's research.  The repository is a codebase for undergraduate courses in bio-statistics, R- and Python- coding, and machine learning in UMBC's TLST program.  Courses have include BTEC350, (Biostatistics), BTEC330 (Software Applications in Biotechnology), BTEC 423 (Machine Learning with Bioinformatics Applications) and BTEC495 (Independent Student Research) courses taught by Robinson (Fall 2019 - Spring 2022). 
