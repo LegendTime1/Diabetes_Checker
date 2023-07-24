@@ -41,7 +41,7 @@ Additional computational resources are provided by NSF Extreme Science and Engin
 
 ## B. Code
 
-#### Current Scripts and template analyses): 
+#### Current Scripts and template analyses) (Modified to run locally. Doesn't generate confusion matrix): 
 [AnalyzeBloodwork.R](scripts/AnalyzeBloodwork.R) 
 1) Loads required packages and sample data,
 2) Generates histograms for all variables, 
