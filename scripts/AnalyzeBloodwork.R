@@ -8,7 +8,8 @@ if (!require("rstudioapi")) {
   library(rstudioapi)
 }
 
-setwd(dirname(getActiveDocumentContext()$path))
+#setwd(dirname(getActiveDocumentContext()$path))
+setwd("C:\\Users\\Samarth Khandelwal\\Desktop\\AnalyzeBloodwork\\scripts")
 
 ## A2. INSTALL AND LOAD PACKAGES
 ## packagelist <- read.csv("Packages.csv", header = FALSE) ?? how to import as a list?.
@@ -308,12 +309,12 @@ s3d$plane3d(fit)
 
 ## E1a. Set valiation parameters
 control <- trainControl(method="cv", number=10)
-metric <- "Accuracy"
+metric <- "RMSE"
 
 ## E1b. Generate models from a selection of classification algorithms.
 # a) linear algorithms
 set.seed(7)
-fit.lda <- train(IBS.subtype~., data=WBC_balanced, method="lda", metric=metric, trControl=control)
+fit.lda <- train(IBS.subtype~., data=WBC_balanced, method="lm", metric=metric, trControl=control)
 # b) nonlinear algorithms
 # CART
 set.seed(7)
@@ -345,4 +346,36 @@ dev.off()
 ## Debug - https://stackoverflow.com/questions/30002013/error-in-confusion-matrix-the-data-and-reference-factors-must-have-the-same-nu
 ## Background - https://machinelearningmastery.com/confusion-matrix-machine-learning/
 predictions <- predict(fit.rf, WBC_balanced)
+
+
+#unique_levels_predictions <- unique(predictions)
+#unique_levels_reference <- unique(WBC_balanced$IBS.subtype)
+# Compare the levels
+#setdiff(unique_levels_predictions, unique_levels_reference)
+#setdiff(unique_levels_reference, unique_levels_predictions)
+
+
+# Convert predictions to a factor with the same levels as reference
+#predictions <- factor(predictions, levels = levels(WBC_balanced$IBS.subtype))
+
+table(factor(predictions, levels=min(WBC_balanced$IBS.subtype):max(WBC_balanced$IBS.subtype)), 
+      factor(WBC_balanced$IBS.subtype, levels=min(WBC_balanced$IBS.subtype):max(WBC_balanced$IBS.subtype)))
+
+# Calculate the confusion matrix
+class(predictions)
+class(WBC_balanced$IBS.subtype)
+
+dim(predictions)
+length(WBC_balanced$IBS.subtype)
+
+#print(predictions)
+#print(WBC_balanced$IBS.subtype)
+
+install.packages('gmodels')
+#import required library 
+library(gmodels)
+
+#Computes the crosstable calculations
+CrossTable(predictions,WBC_balanced$IBS.subtype)
+
 confusionMatrix(predictions, as.factor(WBC_balanced$IBS.subtype))

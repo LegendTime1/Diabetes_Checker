@@ -9,8 +9,9 @@ if (!require("rstudioapi")) {
   install.packages("rstudioapi", dependencies = TRUE)
   library(rstudioapi)
 }
-
-setwd(dirname(getActiveDocumentContext()$path))
+# setwd(dirname(getActiveDocumentContext()$path))
+getwd()
+setwd("C:\\Users\\Samarth Khandelwal\\Desktop\\AnalyzeBloodwork\\scripts")
 
 ## A2. Check for installed packages
 packagelist <- c("mime", "groupdata2","shiny", "rstudioapi", "dplyr", "tidyr", "knitr", "caret", "e1071", "ellipse", "ggplot2", "scatterplot3d", "ggvis")
@@ -110,15 +111,16 @@ CBCdf <- CBCdf[validation_index,]
 
 ## E1a. Set validation parameters
 control <- trainControl(method="cv", number=10)
-metric <- "Accuracy"
+metric <- "RMSE"
 
 ## E1b. Generate models from a selection of classification algorithms.
 # a) linear algorithms
 set.seed(7)
-fit.lda <- train(IBS.subtype~., data=CBCdf, method="lda", metric=metric, trControl=control)
+fit.lda <- train(IBS.subtype~., data=CBCdf, method="lm", metric=metric, trControl=control)
 # b) nonlinear algorithms
 # CART
 set.seed(7)
+#sum(is.na(CBCdf))  # Check the number of missing values in the dataset
 fit.cart <- train(IBS.subtype~., data=CBCdf, method="rpart", metric=metric, trControl=control)
 # kNN
 set.seed(7)
@@ -129,7 +131,9 @@ set.seed(7)
 fit.svm <- train(IBS.subtype~., data=CBCdf, method="svmRadial", metric=metric, trControl=control)
 # Random Forest
 set.seed(7)
+
 fit.rf <- train(IBS.subtype~., data=CBCdf, method="rf", metric=metric, trControl=control)
+#warnings()
 
 ## E2. IDENTIFY THE BEST-PERFORMING PREDICTIVE CLASSIFICATION ALGORITHM
 CBCresults <- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
@@ -149,6 +153,7 @@ confusionMatrix(predictions, as.factor(validation$IBS.subtype))
 
 plot(fit.rf)
 plot(fit.rf$finalModel)
+#str(fit.rf$finalModel$err.rate)
 
 ## Provide a legend for the error rate plot
 ## https://stats.stackexchange.com/questions/51629/multiple-curves-when-plotting-a-random-forest
@@ -198,12 +203,12 @@ RNAdf <- RNAdf[validation_index,]
 
 ## F3b. Set validation parameters
 control <- trainControl(method="cv", number=10)
-metric <- "Accuracy"
+metric <- "RMSE"
 
 ## F3c. Generate models from a selection of classification algorithms.
 # a) linear algorithms  ## Note LDA 
 set.seed(7)
-fit.lda <- train(IBS.subtype~., data=RNAdf, method="lda", metric=metric, trControl=control)
+fit.lda <- train(IBS.subtype~., data=RNAdf, method="lm", metric=metric, trControl=control)
 
 # b) nonlinear algorithms
 # CART
