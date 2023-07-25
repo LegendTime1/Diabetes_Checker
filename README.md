@@ -15,10 +15,10 @@ app.py has the flask code for Web application.
 The web application takes user's age and 2-Hour serum insulin (mu U/ml) levels and predicts whether person has diabetes or not. 
 
 ## checker.py
-Contains the funtions predict_diabetes used in app.py
+Contains the funtion predict_diabetes used in app.py
 
 ## DiabetesChecker.py
-Contains the code on which checker.py is based. Can predict diabetes based on other as well like skin thickness, pregnancies, diastolic bp etc.
+Contains the code on which checker.py is based. Can predict diabetes based on other factors as well like skin thickness, pregnancies, diastolic bp etc.
 
 ## DiabetesML.ipynb
 Untampered code as in the original repository. Contains a deeper analysis of the various factors involved in predicting diabetes.
