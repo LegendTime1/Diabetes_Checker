@@ -7,6 +7,11 @@ PI: Jeffrey Robinson, MS, PhD
 
 [![DOI](https://zenodo.org/badge/203414088.svg)](https://zenodo.org/badge/latestdoi/203414088)
 
+##  Summary
+
+Video summary can be viewed from this google drive link: https://drive.google.com/file/d/1BWVjLQmSU2xJ2y4s3xpXy-1cOAFXbMvF/view?usp=drive_link
+Also, detail code explanation for checker.py, AnalyzeBloodwork.R and IBSClassification.R files is added as comments in their following codes.
+
 <h1 align="left">
 Files </h1>
 
